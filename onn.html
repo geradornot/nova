@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planos de Contrato</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #000000; /* Fundo preto */
+      color: #ffffff; /* Texto branco */
+      font-family: Arial, sans-serif;
+      margin: 0; /* Remover margens padrão */
+      padding: 0; /* Remover paddings padrão */
+    }
+
+    .main-container {
+      background-color: #333333; /* Fundo cinza escuro para contraste */
+      padding: 2rem;
+      border-radius: .5rem;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      max-width: 100%; /* Maximizar a largura para desktop e smartphone */
+      margin: 0 auto; /* Centralizar o container */
+    }
+
+    .pricing-section {
+      padding: 2rem 0;
+    }
+
+    .pricing-card {
+      background-color: #444444; /* Fundo dos cartões de plano */
+      border-radius: .5rem;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .pricing-card:hover {
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .pricing-title {
+      font-size: 2rem;
+      color: #6c757d; /* Cinza para os títulos dos planos */
+    }
+
+    .pricing-price {
+      font-size: 3rem;
+      color: #00c851; /* Verde para preços */
+    }
+
+    .pricing-duration {
+      font-size: 1rem;
+      color: #6c757d; /* Cinza para descrição */
+    }
+
+    .transaction-button {
+      box-shadow: 0 1px 20px 1px #16c454;
+      background-color: #00c851; /* Verde para botões */
+      border-color: #00c851; /* Verde para a borda dos botões */
+      font-size: 1.125rem;
+    }
+
+    .transaction-button:hover {
+      background-color: #00b74a; /* Verde mais escuro ao passar o mouse */
+      border-color: #00b74a; /* Verde mais escuro ao passar o mouse */
+    }
+
+    .special-note {
+      color: #00c851; /* Verde para nota especial */
+      font-weight: bold;
+    }
+
+    .footer {
+      background-color: #222222; /* Fundo escuro do rodapé */
+      color: #ffffff; /* Texto branco */
+    }
+
+    .footer-link {
+      color: #adb5bd;
+    }
+
+    .footer-link:hover {
+      color: #ffffff;
+    }
+
+    /* Ajuste do formulário de seleção */
+    .form-select {
+      background-color: #555555; /* Fundo cinza escuro */
+      color: #ffffff; /* Texto branco */
+    }
+
+    .form-select option {
+      background-color: #333333; /* Fundo cinza escuro para opções */
+    }
+
+    /* Estilo para as imagens dos logos */
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .logo-main {
+      width: 244px;
+      height: 150px;
+      margin-right: 1rem;
+    }
+
+    .logo-description {
+      width: 287px;
+      height: 150px;
+    }
+
+    /* Estilo para a imagem de logo pequena */
+    .logo-small {
+      width: 55px;
+      height: 34px;
+    }
+
+    /* Adicionar responsividade */
+    @media (max-width: 768px) {
+      .logo-main,
+      .logo-description {
+        width: 100%; /* Ajustar imagens para 100% da largura disponível */
+        height: auto; /* Ajustar altura automaticamente para manter a proporção */
+        margin: 0 0 1rem 0; /* Remover margem direita para telas pequenas */
+      }
+    }
+
+    /* Adicionar margens para telas menores */
+    @media (max-width: 576px) {
+      .pricing-title {
+        font-size: 1.5rem; /* Tamanho do título menor para telas pequenas */
+      }
+
+      .pricing-price {
+        font-size: 2rem; /* Tamanho do preço menor para telas pequenas */
+      }
+
+      .pricing-duration {
+        font-size: 0.875rem; /* Tamanho da descrição menor para telas pequenas */
+      }
+
+      .transaction-button {
+        font-size: 1rem; /* Tamanho da fonte do botão menor para telas pequenas */
+      }
+    }
+
+    /* Novo estilo para o símbolo R$ */
+    .pricing-currency {
+      color: #00c851; /* Verde para o símbolo R$ */
+    }
+
+    /* Estilo para o checkbox do plano de duração */
+    .price-duration-toggler {
+      display: none; /* Esconder o checkbox padrão */
+    }
+
+    .price-duration-toggler + .form-check-label {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container main-container">
+    <div class="text-center mb-4">
+      <!-- Container para as Imagens dos Logos -->
+      <div class="logo-container">
+        <!-- Imagem do Logo Principal -->
+        <img src="https://app.m3mesa.com.br/assets/img/logos/m3.svg" alt="Logo M3" class="logo-main">
+
+        <!-- Imagem da Descrição do Logo -->
+        <img src="https://app.m3mesa.com.br/assets/img/logos/m3-descricao.svg" alt="Descrição Logo M3" class="logo-description">
+      </div>
+      <h1 class="display-4">Escolha o seu Plano</h1>
+      <p class="lead">Selecione um dos planos abaixo para começar a operar com nossos contratos.</p>
+    </div>
+    <div class="text-center mb-4">
+      <!-- Checkbox para alternar entre planos anuais e mensais -->
+      <input type="checkbox" id="price-duration-toggler" class="price-duration-toggler">
+      <label for="price-duration-toggler" class="form-check-label">
+        Aprovação direta sem prova
+      </label>
+    </div>
+    <div class="row pricing-section">
+      <!-- Basic Plan -->
+      <div class="col-lg-4 mb-4">
+        <div class="card pricing-card">
+          <div class="card-body text-center">
+            <h2 class="pricing-title">25</h2>
+            <p class="text-muted">Contratos</p>
+            <div class="d-flex justify-content-center">
+              <sup class="h6 pricing-currency mt-3 mb-0 me-1">R$</sup>
+              <h1 class="pricing-price price-toggle price-yearly mb-0">498,90</h1>
+              <h1 class="pricing-price price-toggle price-monthly mb-0 d-none">125,37</h1>
+            </div>
+            <div class="pricing-duration">Limite de perda total R$ 4.500,00 <br> Prazo: 30 dias <br> Plataforma ONE Gratuita</div>
+            <ul class="list-unstyled mt-4">
+              <li class="mb-2"><i class="bi bi-check-circle text-success"></i> Limite de perda total R$ 4.500,00</li>
+              <li class="mb-2"><i class="bi bi-check-circle text-success"></i> Meta R$ 3.400,00</li>
+              <li class="mb-2"><i class="bi bi-check-circle text-success"></i> Prazo: 30 dias</li>
+              <li class="mb-2"><i class="bi bi-check-circle text-success"></i> Plataforma ONE Gratuita</li>
+              <li class="mb-2 special-note">APENAS 50 VAGAS</li>
+              <li class="mb-2">
+                <select class="form-select" id="plataforma-25" name="plataforma" required>
+                  <option value="free">ProfitChart One Gratuita</option>
+                  <option value="pro">ProfitChart Pro (+ R$ 160,00)</option>
+                </select>
+              </li>
+            </ul>
+            <a class="transaction-button btn w-100 mt-3" href="https://pay.m3mesa.online/a6pVgdkxlABGk7B" id="preco25-1">Quero operar com 25 contratos</a>
+            <a class="transaction-button btn w-100 mt-2 d-none" href="https://clkdmg.site/pay/m3-25-contratosp" id="preco25-2">Quero operar com 25 contratos</a>
+          </div>
+        </div>
+      </div>
+      <!-- Intermediate Plan -->
+      <div class="col-lg-4 mb-4">
+        <div class="card pricing-card">
+          <div class="card-body text-center">
+            <h2 class="pricing-title">50</h2>
+            <p class="text-muted">Contratos</p>
+            <div class="d-flex justify-content-center">
+              <sup class="h6 pricing-currency mt-3 mb-0 me-1">R$</sup>
+              <h1 class="pricing-price price-toggle price-yearly mb-0">948,90</h1>
+              <h1 class="pricing-price price-toggle price-monthly mb-0 d-none">236,12</h1>
+            </div>
+            <div class="pricing-duration">Limite de perda total R$ 7.500,00 <br> Prazo: 30 dias <br> Plataforma ONE Gratuita</div>
+            <ul class="list-unstyled mt-4">
+              <li class="mb-2"><i class="bi bi-check-circle text-success"></i> Limite de perda total R$ 7.500,00</li>
+              <li class="mb-2"><i class="bi bi-check-circle text-success"></i> Meta R$ 6.800,00</li>
+              <li class="mb-2"><i class="bi bi-check-circle text-success"></i> Prazo: 30 dias</li>
+              <li class="mb-2"><i class="bi bi-check-circle text-success"></i> Plataforma ONE Gratuita</li>
+              <li class="mb-2 special-note">APENAS 50 VAGAS</li>
+              <li class="mb-2">
+                <select class="form-select" id="plataforma-50" name="plataforma" required>
+                  <option value="free">ProfitChart One Gratuita</option>
+                  <option value="pro">ProfitChart Pro (+ R$ 160,00)</option>
+                </select>
+              </li>
+            </ul>
+            <a class="transaction-button btn w-100 mt-3 d-none" href="https://pay.m3mesa.online/P5LNZ8epjvyGaRy" id="preco50-1">Quero operar com 50 contratos</a>
+            <a class="transaction-button btn w-100 mt-2" href="https://pay.m3mesa.online/P5LNZ8epjvyGaRy" id="preco50-2">Quero operar com 50 contratos</a>
+          </div>
+        </div>
+      </div>
+      <!-- Advanced Plan -->
+      <div class="col-lg-4 mb-4">
+        <div class="card pricing-card">
+          <div class="card-body text-center">
+            <h2 class="pricing-title">150</h2>
+            <p class="text-muted">Contratos</p>
+            <div class="d-flex justify-content-center">
+              <sup class="h6 pricing-currency mt-3 mb-0 me-1">R$</sup>
+              <h1 class="pricing-price price-toggle price-yearly mb-0">2.994,90</h1>
+              <h1 class="pricing-price price-toggle price-monthly mb-0 d-none">748,72</h1>
+            </div>
+            <div class="pricing-duration">Limite de perda total R$ 10.000,00 <br> Prazo: 30 dias <br> Plataforma ONE Gratuita</div>
+            <ul class="list-unstyled mt-4">
+              <li class="mb-2"><i class="bi bi-check-circle text-success"></i> Limite de perda total R$ 10.000,00</li>
+              <li class="mb-2"><i class="bi bi-check-circle text-success"></i> Meta R$ 8.800,00</li>
+              <li class="mb-2"><i class="bi bi-check-circle text-success"></i> Prazo: 30 dias</li>
+              <li class="mb-2"><i class="bi bi-check-circle text-success"></i> Plataforma ONE Gratuita</li>
+              <li class="mb-2 special-note">APENAS 50 VAGAS</li>
+              <li class="mb-2">
+                <select class="form-select" id="plataforma-150" name="plataforma" required>
+                  <option value="free">ProfitChart One Gratuita</option>
+                  <option value="pro">ProfitChart Pro (+ R$ 160,00)</option>
+                </select>
+              </li>
+            </ul>
+            <a class="transaction-button btn w-100 mt-3 d-none" href="https://pay.m3mesa.online/YEwR3Ab9qdjZdKy" id="preco150-1">Quero operar com 150 contratos</a>
+            <a class="transaction-button btn w-100 mt-2" href="https://pay.m3mesa.online/YEwR3Ab9qdjZdKy" id="preco150-2">Quero operar com 150 contratos</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Rodapé -->
+    <div class="footer text-center py-4 mt-4">
+      <p class="mb-0">© 2024 M3 Mesa. Todos os direitos reservados.</p>
+      <p><a href="#" class="footer-link">Política de Privacidade</a> | <a href="#" class="footer-link">Termos de Serviço</a></p>
+    </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const priceDurationToggler = document.getElementById('price-duration-toggler');
+      const priceElements = {
+        yearly: document.querySelectorAll('.price-yearly'),
+        monthly: document.querySelectorAll('.price-monthly')
+      };
+      const buttonElements = {
+        price25_1: document.getElementById('preco25-1'),
+        price25_2: document.getElementById('preco25-2'),
+        price50_1: document.getElementById('preco50-1'),
+        price50_2: document.getElementById('preco50-2'),
+        price150_1: document.getElementById('preco150-1'),
+        price150_2: document.getElementById('preco150-2')
+      };
+
+      const updatePriceDisplay = () => {
+        const isYearly = priceDurationToggler.checked;
+        priceElements.yearly.forEach(el => el.classList.toggle('d-none', !isYearly));
+        priceElements.monthly.forEach(el => el.classList.toggle('d-none', isYearly));
+
+        buttonElements.price25_1.classList.toggle('d-none', !isYearly);
+        buttonElements.price25_2.classList.toggle('d-none', isYearly);
+        buttonElements.price50_1.classList.toggle('d-none', !isYearly);
+        buttonElements.price50_2.classList.toggle('d-none', isYearly);
+        buttonElements.price150_1.classList.toggle('d-none', !isYearly);
+        buttonElements.price150_2.classList.toggle('d-none', isYearly);
+      };
+
+      priceDurationToggler.addEventListener('change', updatePriceDisplay);
+      updatePriceDisplay();  // Initial call to set the correct state
+    });
+  </script>
+</body>
+
+</html>
